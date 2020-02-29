@@ -1,0 +1,16 @@
+﻿using BankApp.Data;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace BankApp.Contracts.RepositoryContracts
+{
+    public interface IAccountRepository
+    {
+        Account CreateAccount(Account account);
+        IEnumerable<Account> GetAll();
+        IEnumerable<Account> GetAccountsByUser(User accountHolder);
+        Account UpdateAccount(Account updateAccount);
+        bool DeleteAccount(Account account);
+    }
+}
