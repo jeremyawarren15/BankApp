@@ -1,7 +1,8 @@
 ﻿using Autofac;
 using BankApp.Contracts;
 using BankApp.Contracts.RepositoryContracts;
-using BankApp.Data.Repositories;
+using BankApp.Contracts.ServiceContracts;
+using BankApp.Repositories;
 using BankApp.Services;
 using System;
 using System.Collections.Generic;
@@ -20,9 +21,11 @@ namespace BankApp
 
             // Register Services
             builder.RegisterType<AccountService>().As<IAccountService>();
+            builder.RegisterType<TransactionService>().As<ITransactionService>();
 
             // Register Repositories
             builder.RegisterType<AccountRepository>().As<IAccountRepository>();
+            builder.RegisterType<TransactionRepository>().As<ITransactionRepository>();
 
             return builder.Build();
         }

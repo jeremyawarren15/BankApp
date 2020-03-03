@@ -1,10 +1,10 @@
-﻿using BankApp.Data;
+﻿using BankApp.Data.Models;
 using BankApp.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BankApp.Contracts
+namespace BankApp.Contracts.ServiceContracts
 {
     public interface IAccountService
     {

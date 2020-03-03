@@ -1,69 +1,62 @@
 ﻿using BankApp.Contracts.RepositoryContracts;
+using BankApp.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BankApp.Data.Repositories
+namespace BankApp.Repositories
 {
     public class AccountRepository : IAccountRepository
     {
+        private readonly BankContext _context;
+
+        public AccountRepository(BankContext bankContext)
+        {
+            _context = bankContext;
+        }
+
         public Account CreateAccount(Account account)
         {
-            using (var ctx = new BankContext())
-            {
-                ctx.Accounts.Add(account);
+            _context.Accounts.Add(account);
 
-                ctx.SaveChanges();
+            _context.SaveChanges();
 
-                return ctx.Accounts.Find(account);
-            }
+            return _context.Accounts.Find(account);
         }
 
         public bool DeleteAccount(Account account)
         {
-            using (var ctx = new BankContext())
-            {
-                ctx.Accounts.Remove(account);
+            _context.Accounts.Remove(account);
 
-                return ctx.SaveChanges() == 1;
-            }
+            return _context.SaveChanges() == 1;
         }
 
         public IEnumerable<Account> GetAccountsByUser(User accountHolder)
         {
-            using (var ctx = new BankContext())
-            {
-                return ctx.Accounts
-                    .Where(x => x.AccountHolder == accountHolder)
-                    .ToList();
-            }
+            return _context.Accounts
+                .Where(x => x.AccountHolder == accountHolder)
+                .ToList();
         }
 
         public IEnumerable<Account> GetAll()
         {
-            using (var ctx = new BankContext())
-            {
-                return ctx.Accounts.ToList();
-            }
+            return _context.Accounts.ToList();
         }
 
         public Account UpdateAccount(Account updateAccount)
         {
-            using (var ctx = new BankContext())
-            {
-                var account = ctx.Accounts
-                    .Single(x => x.Id == updateAccount.Id);
+            var account = _context.Accounts
+                .Single(x => x.Id == updateAccount.Id);
 
-                account.AccountHolder = updateAccount.AccountHolder;
-                account.AccountType = updateAccount.AccountType;
-                account.PIN = updateAccount.PIN;
-                account.ModifiedDate = DateTimeOffset.UtcNow;
+            account.AccountHolder = updateAccount.AccountHolder;
+            account.AccountType = updateAccount.AccountType;
+            account.PIN = updateAccount.PIN;
+            account.ModifiedDate = DateTimeOffset.UtcNow;
 
-                ctx.SaveChanges();
+            _context.SaveChanges();
 
-                return account;
-            }
+            return account;
         }
     }
 }

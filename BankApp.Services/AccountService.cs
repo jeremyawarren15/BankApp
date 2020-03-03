@@ -1,8 +1,7 @@
-﻿using BankApp.Contracts;
-using BankApp.Contracts.RepositoryContracts;
-using BankApp.Data;
+﻿using BankApp.Contracts.RepositoryContracts;
+using BankApp.Contracts.ServiceContracts;
+using BankApp.Data.Models;
 using BankApp.Enums;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

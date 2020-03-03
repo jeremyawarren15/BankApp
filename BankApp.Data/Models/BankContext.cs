@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace BankApp.Data
+namespace BankApp.Data.Models
 {
     public class BankContext : DbContext
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace BankApp.Data
+namespace BankApp.Data.Models
 {
     public class User
     {

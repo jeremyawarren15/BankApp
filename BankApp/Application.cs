@@ -1,4 +1,4 @@
-﻿using BankApp.Contracts;
+﻿using BankApp.Contracts.ServiceContracts;
 using System;
 using System.Collections.Generic;
 using System.Text;

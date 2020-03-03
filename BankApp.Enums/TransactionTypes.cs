@@ -7,6 +7,7 @@ namespace BankApp.Enums
     public enum TransactionTypes
     {
         Credit,
-        Debit
+        Debit,
+        Transfer
     }
 }
