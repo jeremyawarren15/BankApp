@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BankApp.Data\BankApp.Data.csproj" />
     <ProjectReference Include="..\BankApp.Enums\BankApp.Enums.csproj" />
+    <ProjectReference Include="..\BankApp.Repositories\BankApp.Repositories.csproj" />
     <ProjectReference Include="..\BankApp.Services\BankApp.Services.csproj" />
   </ItemGroup>
 

@@ -2,6 +2,7 @@
 using BankApp.Contracts;
 using BankApp.Contracts.RepositoryContracts;
 using BankApp.Contracts.ServiceContracts;
+using BankApp.Data.Models;
 using BankApp.Repositories;
 using BankApp.Services;
 using System;
@@ -15,6 +16,9 @@ namespace BankApp
         public static IContainer Configure()
         {
             var builder = new ContainerBuilder();
+
+            //Register Context
+            builder.RegisterType<BankContext>();
 
             // Register Application
             builder.RegisterType<Application>().As<IApplication>();
