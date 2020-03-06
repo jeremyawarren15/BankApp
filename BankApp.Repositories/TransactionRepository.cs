@@ -1,5 +1,6 @@
 ﻿using BankApp.Contracts.RepositoryContracts;
 using BankApp.Data.Models;
+using BankApp.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace BankApp.Repositories
 
             _context.SaveChanges();
 
-            return _context.Transactions.Find(transaction);
+            return _context.Transactions.Find(transaction.Id);
         }
 
         public bool DeleteTransaction(Transaction transaction)
@@ -32,10 +33,10 @@ namespace BankApp.Repositories
             return _context.SaveChanges() == 1;
         }
 
-        public IEnumerable<Transaction> GetTransactions(Account accounholder)
+        public IEnumerable<Transaction> GetTransactions(Account account)
         {
             return _context.Transactions
-                .Where(x => x.Account == accounholder)
+                .Where(x => x.Account == account || x.CounterpartyAccount == account)
                 .ToList();
         }
 

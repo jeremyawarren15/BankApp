@@ -22,7 +22,7 @@ namespace BankApp.Services
         {
             var account = new Account()
             {
-                AccountHolder = accountHolder,
+                AccountHolderId = accountHolder.Id,
                 AccountType = accountType,
                 PIN = PIN
             };
@@ -43,6 +43,11 @@ namespace BankApp.Services
         public IEnumerable<Account> GetAccounts(User accountHolder)
         {
             return _accountRepository.GetAccountsByUser(accountHolder);
+        }
+
+        public Account GetAccount(int accountId)
+        {
+            return _accountRepository.GetAccount(accountId);
         }
 
         public Account UpdateAccount(Account updatedAccount)

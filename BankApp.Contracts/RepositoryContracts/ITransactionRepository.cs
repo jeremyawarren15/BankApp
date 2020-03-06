@@ -6,7 +6,7 @@ namespace BankApp.Contracts.RepositoryContracts
     public interface ITransactionRepository
     {
         Transaction CreateTransaction(Transaction transaction);
-        IEnumerable<Transaction> GetTransactions(Account accounholder);
+        IEnumerable<Transaction> GetTransactions(Account account);
         Transaction UpdateTransaction(Transaction updatedAccount);
         bool DeleteTransaction(Transaction transaction);
     }

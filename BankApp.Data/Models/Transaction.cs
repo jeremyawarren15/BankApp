@@ -23,7 +23,7 @@ namespace BankApp.Data.Models
         public DateTimeOffset? ModifiedDate { get; set; }
 
         public int AccountId { get; set; }
-        public int CounterpartyAccountId { get; set; }
+        public int? CounterpartyAccountId { get; set; }
 
         public Account Account { get; set; }
 

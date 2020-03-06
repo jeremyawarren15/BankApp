@@ -11,6 +11,7 @@ namespace BankApp.Contracts.ServiceContracts
         Account CreateAccount(User accountHolder, AccountTypes accountType, string PIN);
         IEnumerable<Account> GetAccounts();
         IEnumerable<Account> GetAccounts(User accountHolder);
+        Account GetAccount(int accountId);
         Account UpdateAccount(Account account);
         bool DeleteAccount(Account account);
     }

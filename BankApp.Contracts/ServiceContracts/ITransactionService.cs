@@ -11,5 +11,6 @@ namespace BankApp.Contracts.ServiceContracts
         Transaction Deposit(Account account, decimal amount);
         Transaction Transfer(Account account, Account conterpartyAccount, decimal amount);
         bool DeleteTransaction(Transaction transaction);
+        decimal GetBalance(Account account);
     }
 }

@@ -22,7 +22,7 @@ namespace BankApp.Repositories
 
             _context.SaveChanges();
 
-            return _context.Accounts.Find(account);
+            return _context.Accounts.Find(account.Id);
         }
 
         public bool DeleteAccount(Account account)
@@ -37,6 +37,11 @@ namespace BankApp.Repositories
             return _context.Accounts
                 .Where(x => x.AccountHolder == accountHolder)
                 .ToList();
+        }
+
+        public Account GetAccount(int accountId)
+        {
+            return _context.Accounts.Find(accountId);
         }
 
         public IEnumerable<Account> GetAll()

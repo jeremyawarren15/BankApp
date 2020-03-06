@@ -4,6 +4,7 @@ using BankApp.Data.Models;
 using BankApp.Enums;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BankApp.Services
@@ -26,7 +27,7 @@ namespace BankApp.Services
         {
             var deposit = new Transaction()
             {
-                Account = account,
+                AccountId = account.Id,
                 Amount = amount,
                 TransactionType = TransactionTypes.Debit
             };
@@ -34,12 +35,50 @@ namespace BankApp.Services
             return _transactionRepository.CreateTransaction(deposit);
         }
 
+        public decimal GetBalance(Account account)
+        {
+            var transactions = _transactionRepository.GetTransactions(account)
+                .OrderBy(x => x.CreatedDate);
+
+            decimal sum = 0;
+
+            foreach (var transaction in transactions)
+            {
+                switch (transaction.TransactionType)
+                {
+                    case TransactionTypes.Debit:
+                        sum += transaction.Amount;
+                        break;
+                    case TransactionTypes.Credit:
+                        sum -= transaction.Amount;
+                        break;
+                    case TransactionTypes.Transfer:
+                        if (transaction.Account == account)
+                        {
+                            sum -= transaction.Amount;
+                        }
+                        else if (transaction.CounterpartyAccount == account)
+                        {
+                            sum += transaction.Amount;
+                        }
+                        break;
+                }
+            }
+
+            return sum;
+        }
+
         public Transaction Transfer(Account account, Account conterpartyAccount, decimal amount)
         {
+            if (GetBalance(account) - amount < 0)
+            {
+                return null;
+            }
+
             var transfer = new Transaction()
             {
-                Account = account,
-                CounterpartyAccount = conterpartyAccount,
+                AccountId = account.Id,
+                CounterpartyAccountId = conterpartyAccount.Id,
                 TransactionType = TransactionTypes.Transfer,
                 Amount = amount
             };
@@ -54,9 +93,14 @@ namespace BankApp.Services
                 return null;
             }
 
+            if (GetBalance(account) - amount < 0)
+            {
+                return null;
+            }
+
             var withdraw = new Transaction()
             {
-                Account = account,
+                AccountId = account.Id,
                 Amount = amount,
                 TransactionType = TransactionTypes.Credit
             };

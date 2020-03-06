@@ -10,6 +10,7 @@ namespace BankApp.Contracts.RepositoryContracts
         Account CreateAccount(Account account);
         IEnumerable<Account> GetAll();
         IEnumerable<Account> GetAccountsByUser(User accountHolder);
+        Account GetAccount(int accountId);
         Account UpdateAccount(Account updateAccount);
         bool DeleteAccount(Account account);
     }

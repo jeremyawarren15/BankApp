@@ -22,7 +22,7 @@ namespace BankApp.Repositories
 
             _context.SaveChanges();
 
-            return _context.Users.Find(user);
+            return _context.Users.Find(user.Id);
         }
 
         public bool DeleteUser(User user)
@@ -35,7 +35,7 @@ namespace BankApp.Repositories
         public User GetUser(int userId)
         {
             return _context.Users
-                .Single(x => x.Id == userId);
+                .SingleOrDefault(x => x.Id == userId);
         }
 
         public IEnumerable<User> GetUsers()
@@ -53,7 +53,7 @@ namespace BankApp.Repositories
 
             _context.SaveChanges();
 
-            return _context.Users.Find(oldUser);
+            return _context.Users.Find(oldUser.Id);
         }
     }
 }

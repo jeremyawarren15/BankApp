@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BankApp.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,7 +57,7 @@ namespace BankApp.Data.Migrations
                     CreatedDate = table.Column<DateTimeOffset>(nullable: false),
                     ModifiedDate = table.Column<DateTimeOffset>(nullable: true),
                     AccountId = table.Column<int>(nullable: false),
-                    CounterpartyAccountId = table.Column<int>(nullable: false)
+                    CounterpartyAccountId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,7 +73,7 @@ namespace BankApp.Data.Migrations
                         column: x => x.CounterpartyAccountId,
                         principalTable: "Accounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

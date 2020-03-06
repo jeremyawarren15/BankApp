@@ -26,10 +26,12 @@ namespace BankApp
             // Register Services
             builder.RegisterType<AccountService>().As<IAccountService>();
             builder.RegisterType<TransactionService>().As<ITransactionService>();
+            builder.RegisterType<UserService>().As<IUserService>();
 
             // Register Repositories
             builder.RegisterType<AccountRepository>().As<IAccountRepository>();
             builder.RegisterType<TransactionRepository>().As<ITransactionRepository>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
 
             return builder.Build();
         }

@@ -21,7 +21,7 @@ namespace BankApp.Data.Models
 
         public DateTimeOffset? ModifiedDate { get; set; }
 
-        [Required]
+        public int AccountHolderId { get; set; }
         public User AccountHolder { get; set; }
 
         [InverseProperty("Account")]
